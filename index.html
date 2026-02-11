@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Epic-Style Demo CRM</title>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      display: flex;
+      height: 100vh;
+      background: #eef1f5;
+    }
+
+    .sidebar {
+      width: 260px;
+      background: #1f2a44;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      font-weight: 500;
+    }
+
+    .member {
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      background: #2c3a5e;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .member:hover {
+      background: #3a4a73;
+    }
+
+    .content {
+      flex: 1;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    .section {
+      background: white;
+      padding: 15px;
+      border-radius: 4px;
+      border: 1px solid #d5dbe6;
+      margin-bottom: 20px;
+    }
+
+    .section h3 {
+      margin-top: 0;
+    }
+
+    .prescription-card {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #d5dbe6;
+      background: #f7f9fc;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 8px 14px;
+      background: #2f6fb2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #255c94;
+    }
+
+    input {
+      width: 100%;
+      padding: 6px;
+      border: 1px solid #c5ccd8;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>Patients</h2>
+    <div id="memberList"></div>
+  </div>
+
+  <div class="content">
+    <div id="memberDetails">
+      <h2>Select a patient</h2>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
