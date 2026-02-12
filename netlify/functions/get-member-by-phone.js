@@ -7,19 +7,25 @@ exports.handler = async function(event, context) {
     { memberId: "H2004", name: "Sophia Reynolds", phone: "8475550117" }
   ];
 
-  const phone = event.queryStringParameters.phone;
+  const phone = event.queryStringParameters?.phone;
 
   const member = members.find(m => m.phone === phone);
 
   if (!member) {
     return {
       statusCode: 404,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ error: "Member not found" })
     };
   }
 
   return {
     statusCode: 200,
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(member)
   };
 };
