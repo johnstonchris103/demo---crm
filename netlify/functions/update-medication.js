@@ -2,13 +2,16 @@ const data = require("./data-store");
 
 exports.handler = async function(event, context) {
 
-  const body = JSON.parse(event.body);
+  const body = JSON.parse(event.body || "{}");
 
   const { memberId, medication, newRefillCount } = body;
 
   if (!memberId || !medication || newRefillCount === undefined) {
     return {
       statusCode: 400,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ error: "Missing required fields" })
     };
   }
@@ -18,6 +21,9 @@ exports.handler = async function(event, context) {
   if (!meds) {
     return {
       statusCode: 404,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ error: "Member not found" })
     };
   }
@@ -27,6 +33,9 @@ exports.handler = async function(event, context) {
   if (!med) {
     return {
       statusCode: 404,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ error: "Medication not found" })
     };
   }
@@ -35,6 +44,9 @@ exports.handler = async function(event, context) {
 
   return {
     statusCode: 200,
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       status: "success",
       updatedMedication: med
