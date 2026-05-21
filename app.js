@@ -50,6 +50,7 @@ const members = [
 const facilities = [
   {
     facilityId: "F1001",
+    zipCode: "30305",
     franchiseName: "Ideal Dental Buckhead",
     serviceArea: "Buckhead / Atlanta, GA",
     timezone: "America/New_York",
@@ -60,6 +61,7 @@ const facilities = [
   },
   {
     facilityId: "F1002",
+    zipCode: "28078",
     franchiseName: "Ideal Dental Huntersville",
     serviceArea: "Huntersville, NC",
     timezone: "America/New_York",
@@ -70,6 +72,7 @@ const facilities = [
   },
   {
     facilityId: "F1003",
+    zipCode: "37064",
     franchiseName: "Ideal Dental Franklin",
     serviceArea: "Franklin, TN",
     timezone: "America/Chicago",
@@ -217,7 +220,8 @@ function showFacilities() {
         "
       >
         <strong>${facility.franchiseName}</strong><br/>
-        ${facility.serviceArea}
+        ${facility.serviceArea}<br/>
+        ZIP: ${facility.zipCode}
       </div>
     `;
   });
@@ -248,6 +252,7 @@ function showFacilityDetails(facilityId) {
     <div class="section">
       <h2>${facility.franchiseName}</h2>
 
+      <p><strong>ZIP Code:</strong> ${facility.zipCode}</p>
       <p><strong>Service Area:</strong> ${facility.serviceArea}</p>
       <p><strong>Timezone:</strong> ${facility.timezone}</p>
       <p><strong>Business Hours:</strong> ${facility.businessHoursStatus}</p>
