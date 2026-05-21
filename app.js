@@ -54,7 +54,11 @@ const facilities = [
     franchiseName: "Ideal Dental Buckhead",
     serviceArea: "Buckhead / Atlanta, GA",
     timezone: "America/New_York",
-    businessHoursStatus: "Open",
+    businessHours: {
+      open: "09:00",
+      close: "18:00",
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
     localPhoneNumber: "+14045550100",
     primarySalesQueue: "Chris - Inbound Queue",
     franchiseTransferNumber: "+14045550101"
@@ -65,7 +69,11 @@ const facilities = [
     franchiseName: "Ideal Dental Huntersville",
     serviceArea: "Huntersville, NC",
     timezone: "America/New_York",
-    businessHoursStatus: "Closed",
+    businessHours: {
+      open: "09:00",
+      close: "18:00",
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
     localPhoneNumber: "+17045550200",
     primarySalesQueue: "Chris - Inbound Queue",
     franchiseTransferNumber: "+17045550201"
@@ -76,7 +84,11 @@ const facilities = [
     franchiseName: "Ideal Dental Franklin",
     serviceArea: "Franklin, TN",
     timezone: "America/Chicago",
-    businessHoursStatus: "Open",
+    businessHours: {
+      open: "09:00",
+      close: "18:00",
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
     localPhoneNumber: "+16155550300",
     primarySalesQueue: "Chris - Inbound Queue",
     franchiseTransferNumber: "+16155550301"
@@ -255,7 +267,8 @@ function showFacilityDetails(facilityId) {
       <p><strong>ZIP Code:</strong> ${facility.zipCode}</p>
       <p><strong>Service Area:</strong> ${facility.serviceArea}</p>
       <p><strong>Timezone:</strong> ${facility.timezone}</p>
-      <p><strong>Business Hours:</strong> ${facility.businessHoursStatus}</p>
+      <p><strong>Business Hours:</strong> ${facility.businessHours.open} - ${facility.businessHours.close}</p>
+      <p><strong>Days:</strong> ${facility.businessHours.days.join(", ")}</p>
       <p><strong>Local Number:</strong> ${facility.localPhoneNumber}</p>
       <p><strong>Primary Queue:</strong> ${facility.primarySalesQueue}</p>
       <p><strong>Transfer Number:</strong> ${facility.franchiseTransferNumber}</p>
