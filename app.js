@@ -49,11 +49,12 @@ const members = [
 
 const facilities = [
   {
-    facilityId: "F1001",
+    franchiseId: "FR-GA-BUCKHEAD",
     zipCode: "30305",
-    franchiseName: "Ideal Dental Buckhead",
+    franchiseName: "Home Matters Caregiving - Buckhead / Atlanta",
     serviceArea: "Buckhead / Atlanta, GA",
     timezone: "America/New_York",
+    businessHoursStatus: "Open",
     businessHours: {
       open: "09:00",
       close: "18:00",
@@ -64,11 +65,12 @@ const facilities = [
     franchiseTransferNumber: "+14045550101"
   },
   {
-    facilityId: "F1002",
+    franchiseId: "FR-NC-HUNTERSVILLE",
     zipCode: "28078",
-    franchiseName: "Ideal Dental Huntersville",
+    franchiseName: "Home Matters Caregiving - Huntersville",
     serviceArea: "Huntersville, NC",
     timezone: "America/New_York",
+    businessHoursStatus: "Closed",
     businessHours: {
       open: "09:00",
       close: "18:00",
@@ -79,11 +81,12 @@ const facilities = [
     franchiseTransferNumber: "+17045550201"
   },
   {
-    facilityId: "F1003",
+    franchiseId: "FR-TN-FRANKLIN",
     zipCode: "37064",
-    franchiseName: "Ideal Dental Franklin",
+    franchiseName: "Home Matters Caregiving - Franklin",
     serviceArea: "Franklin, TN",
     timezone: "America/Chicago",
+    businessHoursStatus: "Open",
     businessHours: {
       open: "09:00",
       close: "18:00",
@@ -221,7 +224,7 @@ function showFacilities() {
 
     facilityHtml += `
       <div 
-        onclick="showFacilityDetails('${facility.facilityId}')"
+        onclick="showFacilityDetails('${facility.franchiseId}')"
         style="
           background:white;
           border:1px solid #d5dbe6;
@@ -241,9 +244,9 @@ function showFacilities() {
   memberDetails.innerHTML = facilityHtml;
 }
 
-function showFacilityDetails(facilityId) {
+function showFacilityDetails(franchiseId) {
 
-  const facility = facilities.find(f => f.facilityId === facilityId);
+  const facility = facilities.find(f => f.franchiseId === franchiseId);
 
   if (!facility) return;
 
@@ -264,9 +267,11 @@ function showFacilityDetails(facilityId) {
     <div class="section">
       <h2>${facility.franchiseName}</h2>
 
+      <p><strong>Franchise ID:</strong> ${facility.franchiseId}</p>
       <p><strong>ZIP Code:</strong> ${facility.zipCode}</p>
       <p><strong>Service Area:</strong> ${facility.serviceArea}</p>
       <p><strong>Timezone:</strong> ${facility.timezone}</p>
+      <p><strong>Status:</strong> ${facility.businessHoursStatus}</p>
       <p><strong>Business Hours:</strong> ${facility.businessHours.open} - ${facility.businessHours.close}</p>
       <p><strong>Days:</strong> ${facility.businessHours.days.join(", ")}</p>
       <p><strong>Local Number:</strong> ${facility.localPhoneNumber}</p>
