@@ -1,3 +1,4 @@
+```javascript
 exports.handler = async function (event) {
   try {
     const rawBody =
@@ -12,15 +13,12 @@ exports.handler = async function (event) {
       therapistName,
       appointmentDate,
       appointmentTime,
-      durationMinutes = 50,
       modality,
-      location,
-      appointmentType = "Therapy Session",
-      reason = "Patient requested",
-      slotId = null
+      location
     } = rawBody;
 
     const missingFields = [];
+
     if (!patientId) missingFields.push("patientId");
     if (!therapistId) missingFields.push("therapistId");
     if (!therapistName) missingFields.push("therapistName");
@@ -37,55 +35,28 @@ exports.handler = async function (event) {
         },
         body: JSON.stringify({
           success: false,
-          message: `Missing required fields: ${missingFields.join(", ")}`,
-          appointment: null
+          message: `Missing required fields: ${missingFields.join(", ")}`
         })
       };
     }
 
     const appointmentId = `A${Date.now()}`;
 
-    const appointment = {
-      appointmentId,
-      slotId,
-      patientId,
-      patientName: patientName || null,
-      therapistId,
-      therapistName,
-      appointmentDate,
-      appointmentTime,
-      durationMinutes,
-      modality,
-      location,
-      status: "Scheduled",
-      appointmentType,
-      reason,
-      createdAtUtc: new Date().toISOString()
+    return {
+      statusCode: 200,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        success: true,
+        message: "Appointment created successfully",
+        appointmentId,
+        therapistName,
+        appointmentDate,
+        appointmentTime,
+        modality
+      })
     };
-
-   return {
-  statusCode: 200,
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    success: true,
-    message: "Appointment created successfully",
-    appointmentId,
-    patientId,
-    patientName: patientName || "",
-    therapistId,
-    therapistName,
-    appointmentDate,
-    appointmentTime,
-    modality,
-    location,
-    status: "Scheduled",
-    appointmentType,
-    reason,
-    createdAtUtc: appointment.createdAtUtc
-  })
-};
   } catch (error) {
     return {
       statusCode: 500,
@@ -94,10 +65,9 @@ exports.handler = async function (event) {
       },
       body: JSON.stringify({
         success: false,
-        message: "Unexpected server error while creating appointment",
-        appointment: null,
-        error: error.message
+        message: "Unexpected server error while creating appointment"
       })
     };
   }
 };
+```
