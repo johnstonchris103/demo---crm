@@ -63,17 +63,29 @@ exports.handler = async function (event) {
       createdAtUtc: new Date().toISOString()
     };
 
-    return {
-      statusCode: 200,
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        success: true,
-        message: "Appointment created successfully",
-        appointment
-      })
-    };
+   return {
+  statusCode: 200,
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    success: true,
+    message: "Appointment created successfully",
+    appointmentId,
+    patientId,
+    patientName: patientName || "",
+    therapistId,
+    therapistName,
+    appointmentDate,
+    appointmentTime,
+    modality,
+    location,
+    status: "Scheduled",
+    appointmentType,
+    reason,
+    createdAtUtc: appointment.createdAtUtc
+  })
+};
   } catch (error) {
     return {
       statusCode: 500,
