@@ -2,10 +2,10 @@ exports.handler = async function (event) {
   try {
     const query = event.queryStringParameters || {};
 
-    const startDate = query.startDate || "2026-06-15";
-    const endDate = query.endDate || "2026-06-19";
-    const preferredTime = query.preferredTime || null;
-    const therapistId = query.therapistId || null;
+    const startDate = query.startDate || query.start_date || "2026-06-15";
+    const endDate = query.endDate || query.end_date || "2026-06-19";
+    const preferredTime = query.preferredTime || query.preferred_time || null;
+    const therapistId = query.therapistId || query.therapist_id || null;
     const location = query.location || null;
     const modality = query.modality || null;
 
@@ -209,9 +209,6 @@ exports.handler = async function (event) {
         message: filteredAvailability.length
           ? "Available appointments retrieved successfully"
           : "No available appointments found",
-        startDate,
-        endDate,
-        preferredTime,
         totalAvailableSlots: filteredAvailability.length,
         availableAppointments: filteredAvailability
       })
