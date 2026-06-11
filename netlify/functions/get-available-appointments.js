@@ -4,10 +4,6 @@ exports.handler = async function (event) {
 
     const startDate = query.startDate || query.start_date || "2026-06-15";
     const endDate = query.endDate || query.end_date || "2026-06-19";
-    const preferredTime = query.preferredTime || query.preferred_time || null;
-    const therapistId = query.therapistId || query.therapist_id || null;
-    const location = query.location || null;
-    const modality = query.modality || null;
 
     const availability = [
       {
@@ -177,27 +173,16 @@ exports.handler = async function (event) {
       }
     ];
 
-    let filteredAvailability = availability.filter((slot) => {
-      return (
-        slot.date >= startDate &&
-        slot.date <= endDate &&
-        (therapistId ? slot.therapistId === therapistId : true) &&
-        (location ? slot.location.toLowerCase() === location.toLowerCase() : true) &&
-        (modality ? slot.modality.toLowerCase() === modality.toLowerCase() : true)
-      );
-    });
-
-    if (preferredTime) {
-      filteredAvailability = filteredAvailability.sort((a, b) => {
-        const aMatch = a.time >= preferredTime ? 0 : 1;
-        const bMatch = b.time >= preferredTime ? 0 : 1;
-        return aMatch - bMatch || a.time.localeCompare(b.time);
-      });
-    } else {
-      filteredAvailability = filteredAvailability.sort((a, b) => {
+    const filteredAvailability = availability
+      .filter((slot) => {
+        return (
+          slot.date >= startDate &&
+          slot.date <= endDate
+        );
+      })
+      .sort((a, b) => {
         return `${a.date}T${a.time}`.localeCompare(`${b.date}T${b.time}`);
       });
-    }
 
     return {
       statusCode: 200,
