@@ -4,6 +4,8 @@ exports.handler = async function (event) {
 
     const startDate = query.startDate || query.start_date || "2026-06-15";
     const endDate = query.endDate || query.end_date || "2026-06-19";
+    const location = query.location || query.facility_location || null;
+    const levelOfCare = query.levelOfCare || query.level_of_care || null;
 
     const availability = [
       {
@@ -12,9 +14,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Elena Rivera",
         date: "2026-06-15",
         time: "09:00",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
         available: true
       },
       {
@@ -23,9 +24,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Elena Rivera",
         date: "2026-06-15",
         time: "13:30",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
         available: true
       },
       {
@@ -34,9 +34,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Marcus Chen",
         date: "2026-06-15",
         time: "17:00",
-        durationMinutes: 50,
-        location: "Yonkers",
-        modality: "In-Person",
+        location: "Scottsdale",
+        levelOfCare: "Outpatient Counseling",
         available: true
       },
       {
@@ -45,9 +44,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Priya Patel",
         date: "2026-06-16",
         time: "08:30",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Medication Management (MAT)",
         available: true
       },
       {
@@ -56,9 +54,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Elena Rivera",
         date: "2026-06-16",
         time: "11:00",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
         available: true
       },
       {
@@ -67,9 +64,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Marcus Chen",
         date: "2026-06-16",
         time: "15:30",
-        durationMinutes: 50,
-        location: "Yonkers",
-        modality: "In-Person",
+        location: "Scottsdale",
+        levelOfCare: "Medication Management (MAT)",
         available: true
       },
       {
@@ -78,9 +74,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Priya Patel",
         date: "2026-06-17",
         time: "09:30",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Medication Management (MAT)",
         available: true
       },
       {
@@ -89,9 +84,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Elena Rivera",
         date: "2026-06-17",
         time: "14:00",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
         available: true
       },
       {
@@ -100,9 +94,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Marcus Chen",
         date: "2026-06-17",
         time: "18:00",
-        durationMinutes: 50,
-        location: "Yonkers",
-        modality: "In-Person",
+        location: "Scottsdale",
+        levelOfCare: "Outpatient Counseling",
         available: true
       },
       {
@@ -111,9 +104,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Priya Patel",
         date: "2026-06-18",
         time: "10:00",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Medication Management (MAT)",
         available: true
       },
       {
@@ -122,9 +114,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Elena Rivera",
         date: "2026-06-18",
         time: "12:30",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
         available: true
       },
       {
@@ -133,9 +124,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Marcus Chen",
         date: "2026-06-18",
         time: "16:30",
-        durationMinutes: 50,
-        location: "Yonkers",
-        modality: "In-Person",
+        location: "Scottsdale",
+        levelOfCare: "Medication Management (MAT)",
         available: true
       },
       {
@@ -144,9 +134,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Priya Patel",
         date: "2026-06-19",
         time: "09:00",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Medication Management (MAT)",
         available: true
       },
       {
@@ -155,9 +144,8 @@ exports.handler = async function (event) {
         therapistName: "Dr. Elena Rivera",
         date: "2026-06-19",
         time: "15:00",
-        durationMinutes: 50,
-        location: "Bronx",
-        modality: "Telehealth",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
         available: true
       },
       {
@@ -166,19 +154,18 @@ exports.handler = async function (event) {
         therapistName: "Dr. Marcus Chen",
         date: "2026-06-19",
         time: "19:00",
-        durationMinutes: 50,
-        location: "Yonkers",
-        modality: "In-Person",
+        location: "Scottsdale",
+        levelOfCare: "Outpatient Counseling",
         available: true
       }
     ];
 
     const filteredAvailability = availability
       .filter((slot) => {
-        return (
-          slot.date >= startDate &&
-          slot.date <= endDate
-        );
+        const inDateRange = slot.date >= startDate && slot.date <= endDate;
+        const matchesLocation = !location || slot.location.toLowerCase() === location.toLowerCase();
+        const matchesLevelOfCare = !levelOfCare || slot.levelOfCare.toLowerCase() === levelOfCare.toLowerCase();
+        return inDateRange && matchesLocation && matchesLevelOfCare;
       })
       .sort((a, b) => {
         return `${a.date}T${a.time}`.localeCompare(`${b.date}T${b.time}`);
