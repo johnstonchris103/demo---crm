@@ -18,7 +18,8 @@ exports.handler = async function (event) {
           hasPriorHistory: false,
           lastLevelOfCare: null,
           lastLocation: null,
-          lastVisitDate: null
+          lastVisitDate: null,
+          previousAppointments: []
         })
       };
     }
@@ -150,7 +151,8 @@ exports.handler = async function (event) {
           hasPriorHistory: false,
           lastLevelOfCare: null,
           lastLocation: null,
-          lastVisitDate: null
+          lastVisitDate: null,
+          previousAppointments: []
         })
       };
     }
@@ -173,6 +175,12 @@ exports.handler = async function (event) {
       ? completedAppointments[completedAppointments.length - 1]
       : null;
 
+    const previousAppointments = completedAppointments.map(appt => ({
+      appointmentDate: appt.appointmentDate,
+      levelOfCare: appt.levelOfCare,
+      location: appt.location
+    }));
+
     return {
       statusCode: 200,
       headers: {
@@ -191,7 +199,8 @@ exports.handler = async function (event) {
         hasPriorHistory: !!mostRecentCompleted,
         lastLevelOfCare: mostRecentCompleted ? mostRecentCompleted.levelOfCare : null,
         lastLocation: mostRecentCompleted ? mostRecentCompleted.location : null,
-        lastVisitDate: mostRecentCompleted ? mostRecentCompleted.appointmentDate : null
+        lastVisitDate: mostRecentCompleted ? mostRecentCompleted.appointmentDate : null,
+        previousAppointments
       })
     };
   } catch (error) {
@@ -209,6 +218,7 @@ exports.handler = async function (event) {
         lastLevelOfCare: null,
         lastLocation: null,
         lastVisitDate: null,
+        previousAppointments: [],
         error: error.message
       })
     };
