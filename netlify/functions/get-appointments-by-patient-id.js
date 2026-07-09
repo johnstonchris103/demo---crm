@@ -1,6 +1,8 @@
 exports.handler = async function (event) {
   try {
-    const patientId = event.queryStringParameters?.patientId?.trim();
+    const patientId =
+      event.queryStringParameters?.patientId?.trim() ||
+      event.queryStringParameters?.patient_id?.trim();
 
     if (!patientId) {
       return {
@@ -12,7 +14,11 @@ exports.handler = async function (event) {
           success: false,
           message: "patientId is required",
           patientId: null,
-          appointments: []
+          appointments: [],
+          hasPriorHistory: false,
+          lastLevelOfCare: null,
+          lastLocation: null,
+          lastVisitDate: null
         })
       };
     }
@@ -31,9 +37,8 @@ exports.handler = async function (event) {
             therapistName: "Dr. Elena Rivera",
             appointmentDate: "2026-06-12",
             appointmentTime: "15:00",
-            durationMinutes: 50,
-            modality: "Telehealth",
-            location: "Bronx",
+            location: "Savannah",
+            levelOfCare: "Outpatient Counseling",
             status: "Scheduled",
             appointmentType: "Therapy Session",
             reason: "Anxiety follow-up"
@@ -53,9 +58,8 @@ exports.handler = async function (event) {
             therapistName: "Dr. Marcus Chen",
             appointmentDate: "2026-06-16",
             appointmentTime: "14:30",
-            durationMinutes: 50,
-            modality: "In-Person",
-            location: "Yonkers",
+            location: "Scottsdale",
+            levelOfCare: "Medication Management (MAT)",
             status: "Scheduled",
             appointmentType: "Intake Assessment",
             reason: "New treatment planning"
@@ -82,9 +86,8 @@ exports.handler = async function (event) {
             therapistName: "Dr. Elena Rivera",
             appointmentDate: "2026-06-18",
             appointmentTime: "09:00",
-            durationMinutes: 50,
-            modality: "Telehealth",
-            location: "Bronx",
+            location: "Savannah",
+            levelOfCare: "Outpatient Counseling",
             status: "Scheduled",
             appointmentType: "Therapy Session",
             reason: "Stress management"
@@ -96,7 +99,34 @@ exports.handler = async function (event) {
         firstName: "Tucker",
         lastName: "Fredrickson",
         name: "Tucker Fredrickson",
-        appointments: []
+        appointments: [
+          {
+            appointmentId: "A5010",
+            patientId: "P1005",
+            therapistId: "T2001",
+            therapistName: "Dr. Elena Rivera",
+            appointmentDate: "2025-06-10",
+            appointmentTime: "10:00",
+            location: "Savannah",
+            levelOfCare: "Outpatient Counseling",
+            status: "Completed",
+            appointmentType: "Counseling Session",
+            reason: "Outpatient recovery support"
+          },
+          {
+            appointmentId: "A5011",
+            patientId: "P1005",
+            therapistId: "T2001",
+            therapistName: "Dr. Elena Rivera",
+            appointmentDate: "2025-08-19",
+            appointmentTime: "11:00",
+            location: "Savannah",
+            levelOfCare: "Outpatient Counseling",
+            status: "Completed",
+            appointmentType: "Counseling Session",
+            reason: "Outpatient recovery support"
+          }
+        ]
       }
     ];
 
@@ -116,7 +146,11 @@ exports.handler = async function (event) {
           patientId,
           patientName: null,
           appointments: [],
-          totalAppointments: 0
+          totalAppointments: 0,
+          hasPriorHistory: false,
+          lastLevelOfCare: null,
+          lastLocation: null,
+          lastVisitDate: null
         })
       };
     }
@@ -130,6 +164,14 @@ exports.handler = async function (event) {
     const upcomingAppointments = appointments.filter(
       appt => appt.status === "Scheduled"
     );
+
+    const completedAppointments = appointments.filter(
+      appt => appt.status === "Completed"
+    );
+
+    const mostRecentCompleted = completedAppointments.length
+      ? completedAppointments[completedAppointments.length - 1]
+      : null;
 
     return {
       statusCode: 200,
@@ -145,7 +187,11 @@ exports.handler = async function (event) {
         patientName: patient.name,
         appointments,
         totalAppointments: appointments.length,
-        upcomingAppointmentsCount: upcomingAppointments.length
+        upcomingAppointmentsCount: upcomingAppointments.length,
+        hasPriorHistory: !!mostRecentCompleted,
+        lastLevelOfCare: mostRecentCompleted ? mostRecentCompleted.levelOfCare : null,
+        lastLocation: mostRecentCompleted ? mostRecentCompleted.location : null,
+        lastVisitDate: mostRecentCompleted ? mostRecentCompleted.appointmentDate : null
       })
     };
   } catch (error) {
@@ -159,6 +205,10 @@ exports.handler = async function (event) {
         message: "Unexpected server error",
         patientId: null,
         appointments: [],
+        hasPriorHistory: false,
+        lastLevelOfCare: null,
+        lastLocation: null,
+        lastVisitDate: null,
         error: error.message
       })
     };
