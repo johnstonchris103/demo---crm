@@ -1,48 +1,33 @@
 const locations = [
   {
     locationId: "L1001",
-    locationName: "Footprints Mental Health Counseling - Bronx",
-    city: "Bronx",
-    state: "NY",
+    locationName: "Pinnacle Treatment Centers - Savannah",
+    city: "Savannah",
+    state: "GA",
     timezone: "America/New_York",
-    services: ["In-Person", "Telehealth", "Bilingual Care"],
+    levelOfCareOffered: ["Residential", "Detox", "Outpatient Counseling", "Medication Management (MAT)"],
     businessHours: {
       open: "06:00",
       close: "22:00",
       days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     },
-    phoneNumber: "+19145550001",
-    faxNumber: "+19145550002"
+    phoneNumber: "+19125550001",
+    faxNumber: "+19125550002"
   },
   {
     locationId: "L1002",
-    locationName: "Footprints Mental Health Counseling - Yonkers",
-    city: "Yonkers",
-    state: "NY",
-    timezone: "America/New_York",
-    services: ["In-Person", "Telehealth", "Bilingual Care"],
+    locationName: "Pinnacle Treatment Centers - Scottsdale",
+    city: "Scottsdale",
+    state: "AZ",
+    timezone: "America/Phoenix",
+    levelOfCareOffered: ["Outpatient Counseling", "Medication Management (MAT)"],
     businessHours: {
       open: "06:00",
       close: "22:00",
       days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     },
-    phoneNumber: "+19145550003",
-    faxNumber: "+19145550004"
-  },
-  {
-    locationId: "L1003",
-    locationName: "Footprints Mental Health Counseling - Telehealth",
-    city: "Virtual",
-    state: "Remote",
-    timezone: "America/New_York",
-    services: ["Telehealth", "Bilingual Care"],
-    businessHours: {
-      open: "06:00",
-      close: "22:00",
-      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-    },
-    phoneNumber: "+19145550005",
-    faxNumber: "+19145550006"
+    phoneNumber: "+14805550001",
+    faxNumber: "+14805550002"
   }
 ];
 
@@ -51,7 +36,7 @@ const therapists = [
     therapistId: "T2001",
     therapistName: "Dr. Elena Rivera",
     languages: ["English", "Spanish"],
-    locations: ["Bronx", "Telehealth"],
+    locations: ["Savannah"],
     specialties: ["Adult Therapy", "Anxiety"],
     acceptingAppointments: true
   },
@@ -59,7 +44,7 @@ const therapists = [
     therapistId: "T2002",
     therapistName: "Dr. Marcus Chen",
     languages: ["English"],
-    locations: ["Yonkers", "Telehealth"],
+    locations: ["Scottsdale"],
     specialties: ["Family Therapy", "Depression"],
     acceptingAppointments: true
   },
@@ -67,7 +52,7 @@ const therapists = [
     therapistId: "T2003",
     therapistName: "Dr. Priya Patel",
     languages: ["English", "Hindi"],
-    locations: ["Bronx", "Telehealth"],
+    locations: ["Savannah"],
     specialties: ["Trauma", "Stress Management"],
     acceptingAppointments: true
   },
@@ -75,7 +60,7 @@ const therapists = [
     therapistId: "T2004",
     therapistName: "Dr. Jordan Wright",
     languages: ["English"],
-    locations: ["Bronx", "Telehealth"],
+    locations: ["Savannah"],
     specialties: ["Teen Therapy", "Behavioral Health"],
     acceptingAppointments: false
   }
@@ -92,7 +77,7 @@ const patients = [
     address: "125 W 231st St, Bronx, NY",
     dob: "1988-04-14",
     preferredLanguage: "English",
-    preferredLocation: "Bronx",
+    preferredLocation: "Savannah",
     preferredModality: "Telehealth",
     activePatientStatus: "Active",
     smsConsent: true,
@@ -109,9 +94,8 @@ const patients = [
         therapistName: "Dr. Elena Rivera",
         appointmentDate: "2026-06-12",
         appointmentTime: "15:00",
-        durationMinutes: 50,
-        modality: "Telehealth",
-        location: "Bronx",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
         status: "Scheduled",
         appointmentType: "Therapy Session",
         reason: "Anxiety follow-up"
@@ -128,7 +112,7 @@ const patients = [
     address: "44 Grand Concourse, Bronx, NY",
     dob: "1992-09-03",
     preferredLanguage: "English",
-    preferredLocation: "Yonkers",
+    preferredLocation: "Scottsdale",
     preferredModality: "In-Person",
     activePatientStatus: "Active",
     smsConsent: true,
@@ -144,9 +128,8 @@ const patients = [
         therapistName: "Dr. Marcus Chen",
         appointmentDate: "2026-06-16",
         appointmentTime: "14:30",
-        durationMinutes: 50,
-        modality: "In-Person",
-        location: "Yonkers",
+        location: "Scottsdale",
+        levelOfCare: "Medication Management (MAT)",
         status: "Scheduled",
         appointmentType: "Intake Assessment",
         reason: "New treatment planning"
@@ -163,7 +146,7 @@ const patients = [
     address: "201 E 149th St, Bronx, NY",
     dob: "1979-11-21",
     preferredLanguage: "English",
-    preferredLocation: "Bronx",
+    preferredLocation: "Savannah",
     preferredModality: "Telehealth",
     activePatientStatus: "Active",
     smsConsent: false,
@@ -184,7 +167,7 @@ const patients = [
     address: "88 Riverdale Ave, Bronx, NY",
     dob: "1985-02-08",
     preferredLanguage: "English",
-    preferredLocation: "Bronx",
+    preferredLocation: "Savannah",
     preferredModality: "Telehealth",
     activePatientStatus: "Active",
     smsConsent: true,
@@ -201,9 +184,8 @@ const patients = [
         therapistName: "Dr. Elena Rivera",
         appointmentDate: "2026-06-18",
         appointmentTime: "09:00",
-        durationMinutes: 50,
-        modality: "Telehealth",
-        location: "Bronx",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
         status: "Scheduled",
         appointmentType: "Therapy Session",
         reason: "Stress management"
@@ -216,12 +198,12 @@ const patients = [
     lastName: "Fredrickson",
     name: "Tucker Fredrickson",
     gender: "male",
-    phone: "2566128087",
+    phone: "+12566128087",
     address: "145 Oak Grove Drive, Huntsville, AL",
     dob: "1989-08-22",
     preferredLanguage: "English",
-    preferredLocation: "Telehealth",
-    preferredModality: "Telehealth",
+    preferredLocation: "Savannah",
+    preferredModality: "In-Person",
     activePatientStatus: "Active",
     smsConsent: true,
     primaryTherapistId: "T2001",
@@ -229,7 +211,34 @@ const patients = [
       { medication: "Sertraline", dosage: "50mg", refillsRemaining: 2 },
       { medication: "Hydroxyzine", dosage: "25mg", refillsRemaining: 1 }
     ],
-    appointments: []
+    appointments: [
+      {
+        appointmentId: "A5010",
+        patientId: "P1005",
+        therapistId: "T2001",
+        therapistName: "Dr. Elena Rivera",
+        appointmentDate: "2025-06-10",
+        appointmentTime: "10:00",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
+        status: "Completed",
+        appointmentType: "Counseling Session",
+        reason: "Outpatient recovery support"
+      },
+      {
+        appointmentId: "A5011",
+        patientId: "P1005",
+        therapistId: "T2001",
+        therapistName: "Dr. Elena Rivera",
+        appointmentDate: "2025-08-19",
+        appointmentTime: "11:00",
+        location: "Savannah",
+        levelOfCare: "Outpatient Counseling",
+        status: "Completed",
+        appointmentType: "Counseling Session",
+        reason: "Outpatient recovery support"
+      }
+    ]
   }
 ];
 
@@ -341,9 +350,8 @@ function showPatient(patientId) {
             <span style="color:${statusColor}; font-weight:600;">${appointment.status}</span><br/>
             Date: ${formatDate(appointment.appointmentDate)}<br/>
             Time: ${formatTime(appointment.appointmentTime)}<br/>
-            Duration: ${appointment.durationMinutes} minutes<br/>
+            Level of Care: ${appointment.levelOfCare}<br/>
             Therapist: ${appointment.therapistName}<br/>
-            Modality: ${appointment.modality}<br/>
             Location: ${appointment.location}<br/>
             Reason: ${appointment.reason}
           </div>
@@ -409,8 +417,8 @@ function showPatient(patientId) {
                 <p><strong>Type:</strong> ${nextAppointment.appointmentType}</p>
                 <p><strong>Date:</strong> ${formatDate(nextAppointment.appointmentDate)}</p>
                 <p><strong>Time:</strong> ${formatTime(nextAppointment.appointmentTime)}</p>
+                <p><strong>Level of Care:</strong> ${nextAppointment.levelOfCare}</p>
                 <p><strong>Therapist:</strong> ${nextAppointment.therapistName}</p>
-                <p><strong>Modality:</strong> ${nextAppointment.modality}</p>
                 <p><strong>Status:</strong> ${nextAppointment.status}</p>
               `;
             })()
@@ -489,7 +497,7 @@ function showLocationDetails(locationId) {
       <p><strong>City:</strong> ${location.city}</p>
       <p><strong>State:</strong> ${location.state}</p>
       <p><strong>Timezone:</strong> ${location.timezone}</p>
-      <p><strong>Services:</strong> ${location.services.join(", ")}</p>
+      <p><strong>Levels of Care Offered:</strong> ${location.levelOfCareOffered.join(", ")}</p>
       <p><strong>Business Hours:</strong> ${location.businessHours.open} - ${location.businessHours.close}</p>
       <p><strong>Days:</strong> ${location.businessHours.days.join(", ")}</p>
       <p><strong>Phone:</strong> ${location.phoneNumber}</p>
